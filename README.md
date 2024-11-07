@@ -1,42 +1,73 @@
-# banking
-##### Run `./start.sh` to download the dependencies and run the the application
 
-To run the application, you have to define the environment variables, default values of the variables are defined inside `start.sh`
+# 🏦 Banking API - A Scalable, Hexagonal Architecture-based Banking Application in Golang
 
-- SERVER_ADDRESS    `[IP Address of the machine]`
-- SERVER_PORT       `[Port of the machine]`
-- DB_USER           `[Database username]`
-- DB_PASSWD         `[Database password]`
-- DB_ADDR           `[IP address of the database]`
-- DB_PORT           `[Port of the database]`
-- DB_NAME           `[Name of the database]`
+This **Banking API** is designed with **hexagonal architecture** to ensure scalability and maintainability. Built in **Golang** and powered by **Gorilla Mux** for routing, this API provides banking functionalities like account management and transactions. 
 
-# mysql database
-You can use any one of the following procedure to make a database instance, and make the changes to your `start.sh` file accordingly 
-1. `docker-compose.yml` file. This contains the init script to generate and tables and insert the default data. You just need to bring the container up
+## 🚀 Getting Started
 
-    To start the docker container, run the `docker-compose up` inside the `resources/docker` folder
- 
-2. `resources/database.sql` this contains the SQL for generating the tables. In case you dont want to use the docker-compose file you can use this file to generate tables and insert the default data
+### Prerequisites
 
-# mocks generator
-`./generate-mocks.sh`
+Before running the API, ensure the following are installed on your system:
 
-# run unit tests
-  `./run-tests.sh`
+- **Go** - for application development.
+- **MySQL** - database for storing banking data.
+- **Docker & Docker Compose** (optional, for containerized database setup).
 
-## Swagger documentation
-You need to install go-swagger in your path. I have used [v0.28.0](https://github.com/go-swagger/go-swagger/releases/tag/v0.28.0)
-Download the version compatible with your OS and rename the file to `swagger`. This file should be available in your path. If you are on `linux` or `osx` you might also need to add `execute permission` to the downloaded file using `chmod +x swagger`
+### Environment Variables
 
-Generate swagger json file along with models spes
+To run the application, define the following environment variables. Default values are specified inside `start.sh`:
 
-```shell
-$ swagger generate spec -o ./swagger.json --scan-models
+- **`SERVER_ADDRESS`**: IP address where the server will run.
+- **`SERVER_PORT`**: Port for the server.
+- **`DB_USER`**: Username for the database.
+- **`DB_PASSWD`**: Password for the database.
+- **`DB_ADDR`**: IP address of the database server.
+- **`DB_PORT`**: Port of the database server.
+- **`DB_NAME`**: Name of the database to connect to.
+
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/banking-api.git
+   cd banking-api
+   ```
+
+2. **Run the Application**
+   Use the `start.sh` script to download dependencies and run the application:
+   ```bash
+   ./start.sh
+   ```
+
+   > **Note**: `start.sh` sets up default environment variables. Modify these as needed.
+
+## Database Setup
+
+You have two options for setting up your MySQL database:
+
+1. **Using Docker Compose**  
+   A `docker-compose.yml` file is available in `resources/docker`. This file includes an initialization script to create tables and insert default data.
+
+   To start the Docker container, navigate to the `resources/docker` directory and run:
+   ```bash
+   docker-compose up
+   ```
+
+2. **Manual Setup Using SQL Script**  
+   Alternatively, you can manually set up the database using `resources/database.sql`. Run this script in your MySQL instance to create tables and insert default data.
+
+## 🧪 Testing and Mocks
+
+### Generate Mocks
+
+To generate mocks for testing, run:
+```bash
+./generate-mocks.sh
 ```
 
-Run the swagger documentation, you can also specify port
-```shell
-$ swagger serve swagger.json --port 5000
+### Run Unit Tests
+
+To run unit tests and ensure everything is working as expected, use:
+```bash
+./run-tests.sh
 ```
-# Simples-Go-Bank-Rest-Api
